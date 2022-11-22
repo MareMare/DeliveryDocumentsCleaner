@@ -152,6 +152,65 @@
 
     </details>
 
+### [WdInformation列挙(Word)]
+> 指定された選択範囲または指定範囲に関して取得される情報の種類を指定します。
+
+<details>
+<summary>📝 WdInformation 列挙値の一覧：</summary>
+
+| 名前                                       | 値 | 説明                                                                                                                                                                                                                                                              |
+|--------------------------------------------|----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| wdActiveEndAdjustedPageNumber              | 1  | 指定された選択範囲または指定範囲のアクティブな終点が含まれるページの数を返します。 開始ページ番号を設定した場合、または他の手動調整を行う場合は、調整済みページ番号 ( wdActiveEndPageNumber とは異なる) を返します。                                              |
+| wdActiveEndPageNumber                      | 3  | 指定された選択範囲または文書の先頭から数えて、範囲のアクティブな終点が含まれるページの数を返します。 ページ番号の手動調整は無視されます ( wdActiveEndAdjustedPageNumber とは異なり)。                                                                             |
+| wdActiveEndSectionNumber                   | 2  | 指定された選択範囲または指定範囲の終了位置を含むセクション番号を取得します。                                                                                                                                                                                      |
+| wdAtEndOfRowMarker                         | 31 | 指定された選択範囲または指定範囲が表の中の行区切り記号である場合、値は True です。                                                                                                                                                                                |
+| wdCapsLock                                 | 21 | Returns True if Caps Lock is in effect.                                                                                                                                                                                                                           |
+| wdEndOfRangeColumnNumber                   | 17 | 指定された選択範囲または指定範囲の終了位置の列番号を取得します。                                                                                                                                                                                                  |
+| wdEndOfRangeRowNumber                      | 14 | 指定された選択範囲または指定範囲の終了位置の行番号を取得します。                                                                                                                                                                                                  |
+| wdFirstCharacterColumnNumber               | 9  | 指定された選択範囲または指定範囲の開始位置を取得します。 選択範囲または指定範囲が解除されている場合、範囲の右側の文字番号 (ステータス バーで "桁" の後に表示される文字の列番号と同じ) を取得します。                                                              |
+| wdFirstCharacterLineNumber                 | 10 | 指定された選択範囲または指定範囲の開始位置を取得します。 選択範囲または指定範囲が解除されている場合は、範囲の右側の文字番号 (ステータス バーで "行" の後に表示される文字の行番号と同じ) を取得します。                                                            |
+| wdFrameIsSelected                          | 11 | 指定された選択範囲または指定範囲がレイアウト枠またはテキスト ボックス全体である場合、値は True です。                                                                                                                                                             |
+| wdHeaderFooterType                         | 33 | 指定された選択範囲または指定範囲を含むヘッダーまたはフッターの種類を示す値を取得します。 詳細については、「備考」の表を参照してください。                                                                                                                         |
+| wdHorizontalPositionRelativeToPage         | 5  | 指定した選択範囲または範囲の水平方向の位置を返します。これは、選択範囲または範囲の左端からページの左端までの距離です (1 ポイント = 20 twips、72 ポイント = 1 インチ)。 選択範囲または範囲が画面領域内に含めなかった場合は、-1 を返します。                        |
+| wdHorizontalPositionRelativeToTextBoundary | 7  | 指定した選択範囲または範囲の水平方向の位置をポイント (1 ポイント = 20 twips、72 ポイント = 1 インチ) で、それを囲む最も近いテキスト境界の左端を基準に返します。 選択範囲または範囲が画面領域内に含めなかった場合は、-1 を返します。                               |
+| wdInBibliography                           | 42 | 文献目録には、指定された選択範囲または指定範囲の場合は True を返します。                                                                                                                                                                                          |
+| wdInCitation                               | 43 | 指定された選択範囲または指定範囲が引用文献の場合は True を返します。                                                                                                                                                                                              |
+| wdInClipboard                              | 38 | この定数の詳細については、Microsoft Office Macintosh Edition に含まれているランゲージ リファレンスのヘルプを参照してください。                                                                                                                                    |
+| wdInCommentPane                            | 26 | 指定された選択範囲または指定範囲がコメント ウィンドウ枠にある場合、値は True です。                                                                                                                                                                               |
+| wdInContentControl                         | 46 | 指定された選択範囲または指定範囲がコンテンツ コントロール内にある場合は True を返します。                                                                                                                                                                         |
+| wdInCoverPage                              | 41 | 送付状には、指定された選択範囲または指定範囲の場合は True を返します。                                                                                                                                                                                            |
+| wdInEndnote                                | 36 | 標準表示モードで、文末脚注または文末脚注ウィンドウ枠で印刷レイアウト表示で、選択範囲または指定範囲がの場合 True を返します。                                                                                                                                      |
+| wdInFieldCode                              | 44 | フィールド コードでは、指定された選択範囲または指定範囲の場合は True を返します。                                                                                                                                                                                 |
+| wdInFieldResult                            | 45 | フィールドの実行結果は、指定された選択範囲または指定範囲の場合は True を返します。                                                                                                                                                                                |
+| wdInFootnote                               | 35 | 標準表示モードで脚注領域または印刷レイアウト表示で、脚注ウィンドウ枠で、選択範囲または指定範囲がの場合 True を返します。                                                                                                                                          |
+| wdInFootnoteEndnotePane                    | 25 | 場合、選択範囲または指定範囲の脚注または文末脚注のウィンドウで印刷レイアウト表示の脚注または文末脚注領域または標準表示モードでは、 True を返します。 詳細については、 wdInFootnote および wdInEndnote を上記の説明を参照してください。                            |
+| wdInHeaderFooter                           | 28 | 場合は、選択範囲または指定範囲がヘッダーまたはフッターのウィンドウまたは、ヘッダーまたはフッターを印刷レイアウト表示では、 True を返します。                                                                                                                      |
+| wdInMasterDocument                         | 34 | 選択範囲または指定範囲がグループ文書 (少なくとも 1 つのサブ文書を含む文書) 内の場合は True を返します。                                                                                                                                                           |
+| wdInWordMail                               | 37 | 場合は、選択範囲または指定範囲がヘッダーまたはフッターのウィンドウまたは、ヘッダーまたはフッターを印刷レイアウト表示では、 True を返します。                                                                                                                      |
+| wdMaximumNumberOfColumns                   | 18 | 選択範囲または指定範囲に含まれる表の列の最大の列数を取得します。                                                                                                                                                                                                  |
+| wdMaximumNumberOfRows                      | 15 | 指定された選択範囲または指定範囲の表の最大の行数を取得します。                                                                                                                                                                                                    |
+| wdNumberOfPagesInDocument                  | 4  | 選択範囲または指定範囲と関連する文書のページ数を取得します。                                                                                                                                                                                                      |
+| wdNumLock                                  | 22 | Returns True if Num Lock is in effect.                                                                                                                                                                                                                            |
+| wdOverType                                 | 23 | 上書きモードの場合、値は True です。 Overtype プロパティを使用して上書きモードの状態を変更できます。                                                                                                                                                              |
+| wdReferenceOfType                          | 32 | 「備考」の表に示すとおり、選択範囲が脚注、文末脚注、またはコメントの参照範囲の中にあるかどうかを示す値を取得します。                                                                                                                                              |
+| wdRevisionMarking                          | 24 | 変更履歴の記録がオンの場合、値は True です。                                                                                                                                                                                                                      |
+| wdSelectionMode                            | 20 | 次の表に示すように、現在の選択モードを示す値を取得します。                                                                                                                                                                                                        |
+| wdStartOfRangeColumnNumber                 | 16 | 選択範囲または指定範囲の先頭を含む表の列番号を取得します。                                                                                                                                                                                                        |
+| wdStartOfRangeRowNumber                    | 13 | 選択範囲または指定範囲の先頭を含む表の行番号を取得します。                                                                                                                                                                                                        |
+| wdVerticalPositionRelativeToPage           | 6  | 選択範囲または範囲の垂直方向の位置を返します。これは、選択範囲の上端からページの上端までの距離です (1 ポイント = 20 twips、72 ポイント = 1 インチ)。 選択範囲がドキュメント ウィンドウに表示されない場合は、-1 を返します。                                       |
+| wdVerticalPositionRelativeToTextBoundary   | 8  | 選択範囲またはポイント (1 ポイント = 20 twip、72 ポイント = 1 インチ) で、それを囲む隣接する境界線の上端を基準にして範囲の垂直方向の位置を返します。 枠または表のセル内に挿入ポイントの位置を決定するのに便利です。 選択範囲が表示されない場合は、-1 を返します。 |
+| wdWithInTable                              | 12 | 選択範囲が表の中にある場合、値は True です。                                                                                                                                                                                                                      |
+| wdZoomPercentage                           | 19 | 割合 のプロパティが設定されている拡大率の現在の割合を返します。                                                                                                                                                                                                   |
+
+</details>
+
+<!-- リンク先 -->
+[WdBuiltInProperty列挙(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.wdbuiltinproperty
+[WdRemoveDocInfoType列挙(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.wdremovedocinfotype
+[Document.RemovePersonalInformationプロパティ(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.document.removepersonalinformation
+[WdColorIndex列挙(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.wdcolorindex
+[WdInformation列挙(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.wdinformation
+
 ---
 ## 蛍光ペンの一括クリア
 
@@ -299,11 +358,48 @@
 
     </details>
 
-<!-- リンク先 -->
-[WdBuiltInProperty列挙(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.wdbuiltinproperty
-[WdRemoveDocInfoType列挙(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.wdremovedocinfotype
-[Document.RemovePersonalInformationプロパティ(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.document.removepersonalinformation
-[WdColorIndex列挙(Word)]: https://learn.microsoft.com/ja-jp/office/vba/api/word.wdcolorindex
+## 複数Wordファイルのページ番号を連番にする
+
+* マクロの例
+    <details>
+    <summary>🎨 複数Wordファイルの連番化1:</summary>
+
+    ```vb
+    Sub フォルダー内文書ページ番号の連番化()
+
+    Const USERPATH As String = "C:\@test" 'ファイルの場所
+    Dim oDoc As Document
+    Dim aPath As String
+    Dim cnt As Long
+    Dim pg As Long, pgsum As Long
+    
+    aPath = Dir(USERPATH & "\*.docx", vbNormal)
+    Do While aPath <> ""
+        cnt = cnt + 1
+        Set oDoc = Documents.Open(USERPATH & "\" & aPath)
+        With oDoc
+        'この文書のページ数
+        pg = .Content.Information(wdNumberOfPagesInDocument)
+        If cnt = 1 Then
+            '1番目は変更なしで閉じる
+            .Close SaveChanges:=False
+        Else
+            '2番目以降は開始ページ番号を設定して閉じる
+            .Sections(1).Footers(wdHeaderFooterPrimary) _
+                .PageNumbers.StartingNumber = pgsum + 1
+            .Close SaveChanges:=True
+        End If
+        '現在までの総ページ
+        pgsum = pgsum + pg
+        End With
+        aPath = Dir()
+    Loop
+    Set oDoc = Nothing
+
+    End Sub
+    ```
+
+    </details>
 
 # Excel VBA マクロのメモ
 
