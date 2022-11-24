@@ -21,7 +21,7 @@ End Enum
 Private Const m_wdColorIndexKeyPrefix As String = "WdColorIndex="
 Private Const m_wdColorIndexesMaxCount As Long = 15
 Private m_docFolderPath As String
-Private m_targetFileNamesMapping As Scripting.Dictionary
+Private m_docKindMapping As Scripting.Dictionary
 Private m_wdColorIndexes() As WdColorIndex
 Private m_wdColorIndexesToClear() As WdColorIndex
 Private m_wdColorIndexesIsAllClear As Boolean
@@ -46,7 +46,13 @@ Private Sub Class_Initialize()
     m_wdColorIndexes(14) = WdColorIndex.wdBlack
     
     m_docFolderPath = ""
-    Set m_targetFileNamesMapping = New Scripting.Dictionary
+    Set m_docKindMapping = New Scripting.Dictionary
+    With m_docKindMapping
+        Call .Add("docx", DocKind.Word)
+        Call .Add("docm", DocKind.Word)
+        Call .Add("xlsx", DocKind.Excel)
+        Call .Add("xlsm", DocKind.Excel)
+    End With
     Erase m_wdColorIndexesToClear
     m_wdColorIndexesIsAllClear = False
     m_xlColorCodeToClear = -1
@@ -98,13 +104,6 @@ End Sub
 
 Public Function BrowseDocFiles() As String()
     Dim fso As New FileSystemObject
-    Dim mapping As New Scripting.Dictionary
-    With mapping
-        Call .Add("docx", DocKind.Word)
-        Call .Add("docm", DocKind.Word)
-        Call .Add("xlsx", DocKind.Excel)
-        Call .Add("xlsm", DocKind.Excel)
-    End With
     Dim extensionName As String
     Dim tempKey As String
     Dim objFile As file
@@ -112,17 +111,14 @@ Public Function BrowseDocFiles() As String()
     Dim index As Long
     
     index = 0
-    Call m_targetFileNamesMapping.RemoveAll
-    
     If m_docFolderPath <> "" Then
         With fso.GetFolder(m_docFolderPath)
             For Each objFile In .Files
                 extensionName = fso.GetExtensionName(objFile.Path)
                 tempKey = VBA.LCase$(extensionName)
-                If mapping.Exists(tempKey) Then
-                    Debug.Print mapping(tempKey), objFile.Name
+                If m_docKindMapping.Exists(tempKey) Then
+                    Debug.Print m_docKindMapping(tempKey), objFile.Name
 
-                    Call m_targetFileNamesMapping.Add(objFile.Name, mapping(tempKey))
                     ReDim Preserve fileNames(index)
                     fileNames(index) = objFile.Name
                     index = index + 1
@@ -134,25 +130,29 @@ Public Function BrowseDocFiles() As String()
     Set fso = Nothing
 End Function
 
-Public Sub ExecuteToClear()
+Public Sub ExecuteToClear(ByRef fileNames() As String)
     If m_docFolderPath = "" Then
         Exit Sub
     End If
+    
+    Dim fileNamesMapping As Scripting.Dictionary
+    Set fileNamesMapping = CreateFileNamesMapping(fileNames)
     
     Dim fso As New FileSystemObject
     Dim fileName As String
     Dim fileKind As DocKind
     Dim filePath As String
+    
     Dim index As Long
     Dim startDateTime As Date
     startDateTime = VBA.Now()
 
-    For index = 0 To m_targetFileNamesMapping.Count - 1 Step 1
-        fileName = m_targetFileNamesMapping.Keys(index)
-        fileKind = m_targetFileNamesMapping.Items(index)
+    For index = 0 To fileNamesMapping.Count - 1 Step 1
+        fileName = fileNamesMapping.Keys(index)
+        fileKind = fileNamesMapping.Items(index)
         filePath = fso.BuildPath(m_docFolderPath, fileName)
         
-        RaiseEvent Starting(index, m_targetFileNamesMapping.Count, fileName, VBA.Now() - startDateTime)
+        RaiseEvent Starting(index, fileNamesMapping.Count, fileName, VBA.Now() - startDateTime)
         
         Select Case fileKind
         Case DocKind.Excel
@@ -163,10 +163,34 @@ Public Sub ExecuteToClear()
             ''
         End Select
         
-        RaiseEvent Completed(index + 1, m_targetFileNamesMapping.Count, fileName, VBA.Now() - startDateTime)
+        RaiseEvent Completed(index + 1, fileNamesMapping.Count, fileName, VBA.Now() - startDateTime)
     Next index
     Set fso = Nothing
 End Sub
+
+Private Function CreateFileNamesMapping(ByRef fileNames() As String) As Scripting.Dictionary
+    Dim fso As New FileSystemObject
+    Dim fileNamesMapping As New Scripting.Dictionary
+    
+    Dim fileName As String
+    Dim extensionName As String
+    Dim tempKey As String
+    Dim index As Long
+
+    If (Not fileNames) <> -1 Then
+        For index = LBound(fileNames) To UBound(fileNames) Step 1
+            fileName = fileNames(index)
+            extensionName = fso.GetExtensionName(fileName)
+            tempKey = VBA.LCase$(extensionName)
+            If m_docKindMapping.Exists(tempKey) Then
+                Call fileNamesMapping.Add(fileName, m_docKindMapping(tempKey))
+            End If
+        Next index
+    End If
+    
+    Set fso = Nothing
+    Set CreateFileNamesMapping = fileNamesMapping
+End Function
 
 Private Function CreateWdColorIndexesMapping(ByRef wdColorIndexes() As WdColorIndex) As Scripting.Dictionary
     Dim mapping As New Scripting.Dictionary
