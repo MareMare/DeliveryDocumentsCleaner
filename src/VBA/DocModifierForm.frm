@@ -70,7 +70,11 @@ Private Sub FolderSelectionButton_Click()
         Next index
     End If
     
-    Call SetEnabled(Me.FilesListBox.ListCount > 0)
+    Call SetEnabled(HasSelectedFileNames())
+End Sub
+
+Private Sub FilesListBox_Change()
+    Call SetEnabled(HasSelectedFileNames())
 End Sub
 
 Private Sub WdColorAllOnCheckBox_Click()
@@ -101,10 +105,12 @@ Private Sub ExecuteButton_Click()
     Me.ProgressBar1.Value = 0
     Call VBA.DoEvents
     
+    Dim fileNames() As String
+    fileNames = GetSelectedFileNames()
     With m_docModifier
         Call .SetWdColorIndexesToClear(GetWdColorCheckedIndexes())
         Call .SetXlColorCodeToClear(GetCurrentXlColorCode())
-        Call .ExecuteToClear
+        Call .ExecuteToClear(fileNames)
     End With
     
     Me.ExecuteButton.Enabled = True
@@ -129,6 +135,34 @@ Private Sub SetEnabled(ByVal isEnabled As Boolean)
     Me.XlColorFrame.Enabled = isEnabled
     Me.ExecuteButton.Enabled = isEnabled
 End Sub
+
+Private Function HasSelectedFileNames() As Boolean
+    Dim index As Long
+    
+    HasSelectedFileNames = False
+    For index = 0 To Me.FilesListBox.ListCount - 1 Step 1
+        If Me.FilesListBox.Selected(index) = True Then
+            HasSelectedFileNames = True
+            Exit For
+        End If
+    Next index
+End Function
+
+Private Function GetSelectedFileNames() As String()
+    Dim fileNames() As String
+    Dim index As Long
+    Dim storedIndex As Long
+    
+    storedIndex = 0
+    For index = 0 To Me.FilesListBox.ListCount - 1 Step 1
+        If Me.FilesListBox.Selected(index) = True Then
+            ReDim Preserve fileNames(storedIndex)
+            fileNames(storedIndex) = Me.FilesListBox.List(index)
+            storedIndex = storedIndex + 1
+        End If
+    Next index
+    GetSelectedFileNames = fileNames
+End Function
 
 Private Function GetWdColorCheckedIndexes() As WdColorIndex()
     Dim index As Long
