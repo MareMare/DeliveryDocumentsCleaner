@@ -37,13 +37,6 @@ public class CompositeDisposable : IDisposable
     public bool IsDisposed { get; private set; }
 
     /// <summary>
-    /// Dispose 可能なインスタンスのコンテナを生成します。
-    /// </summary>
-    /// <param name="disposables">新しいリストに要素がコピーされるコレクション。</param>
-    /// <returns>生成された <see cref="IDisposable" /> を実装したインスタンス。</returns>
-    public static IDisposable Create(params IDisposable[] disposables) => new DisposableArray(disposables);
-
-    /// <summary>
     /// コンテナに追加します。
     /// </summary>
     /// <param name="disposable">追加するインスタンス。</param>
@@ -74,36 +67,5 @@ public class CompositeDisposable : IDisposable
         }
 
         GC.SuppressFinalize(this);
-    }
-
-    /// <summary>
-    /// Dispose 可能なインスタンスのコンテナを表します。
-    /// </summary>
-    private sealed class DisposableArray : IDisposable
-    {
-        /// <summary>コンテナを表します。</summary>
-        private IDisposable[]? _disposables;
-
-        /// <summary>
-        /// <see cref="DisposableArray" /> クラスの新しいインスタンスを初期化します。
-        /// </summary>
-        /// <param name="disposables">新しいリストに要素がコピーされるコレクション。</param>
-        public DisposableArray(IDisposable[] disposables)
-        {
-            Volatile.Write(ref this._disposables, disposables ?? throw new ArgumentNullException(nameof(disposables)));
-        }
-
-        /// <inheritdoc />
-        public void Dispose()
-        {
-            var old = Interlocked.Exchange(ref this._disposables, null);
-            if (old != null)
-            {
-                foreach (var disposable in old)
-                {
-                    disposable?.Dispose();
-                }
-            }
-        }
     }
 }
