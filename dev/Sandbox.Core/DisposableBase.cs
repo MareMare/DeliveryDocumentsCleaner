@@ -54,14 +54,12 @@ namespace Sandbox.Core
         /// <see cref="IDisposable.Dispose" /> するときにログを出力します。
         /// </summary>
         /// <param name="disposing">マネージ リソースとアンマネージ リソースの両方を解放する場合は true。アンマネージ リソースだけを解放する場合は false。</param>
-        [Conditional("DEBUG")]
         protected virtual void WriteLogAtDisposing(bool disposing) =>
             Debug.Print(FormattableString.Invariant($"■ {this.GetType().FullName}.Disposing({disposing})..."));
 
         /// <summary>
         /// <see cref="IDisposable.Dispose" /> したときにログを出力します。
         /// </summary>
-        [Conditional("DEBUG")]
         protected virtual void WriteLogAtDisposed() =>
             Debug.Print(FormattableString.Invariant($"■ {this.GetType().FullName}.Disposed..."));
 
