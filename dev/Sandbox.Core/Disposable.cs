@@ -34,8 +34,25 @@ namespace Sandbox.Core
         /// </summary>
         private sealed class EmptyDisposable : IDisposable
         {
+            /// <summary>
+            /// <see cref="EmptyDisposable" /> クラスのインスタンスが GC に回収される時に呼び出されます。
+            /// </summary>
+            ~EmptyDisposable()
+            {
+                EmptyDisposable.Nop();
+            }
+
             /// <inheritdoc />
             public void Dispose()
+            {
+                EmptyDisposable.Nop();
+                GC.SuppressFinalize(this);
+            }
+
+            /// <summary>
+            /// 何もしません。
+            /// </summary>
+            private static void Nop()
             {
                 // no op
             }
@@ -49,6 +66,9 @@ namespace Sandbox.Core
             /// <summary><see cref="IDisposable.Dispose" /> が呼ばれた時の処理を行うメソッドのデリゲートを表します。</summary>
             private volatile Action? _dispose;
 
+            /// <summary><see cref="IDisposable.Dispose" /> メソッドが呼び出されたかをスレッドセーフで管理する値を表します。</summary>
+            private long _disposableState;
+
             /// <summary>
             /// <see cref="IDisposable.Dispose" /> が呼ばれた時の処理を行うメソッドのデリゲートを指定して <see cref="IDisposable" /> を実装したインスタンスを生成します。
             /// </summary>
@@ -58,8 +78,31 @@ namespace Sandbox.Core
                 this._dispose = dispose;
             }
 
+            /// <summary>
+            /// <see cref="AnonymousDisposable" /> クラスのインスタンスが GC に回収される時に呼び出されます。
+            /// </summary>
+            ~AnonymousDisposable()
+            {
+                this.DisposeCore();
+            }
+
             /// <inheritdoc />
-            public void Dispose() => Interlocked.Exchange(ref this._dispose, null)?.Invoke();
+            public void Dispose()
+            {
+                this.DisposeCore();
+                GC.SuppressFinalize(this);
+            }
+
+            /// <summary>
+            /// <see cref="DisposableBase" /> クラスのインスタンスによって使用されているアンマネージ リソースを解放し、オプションでマネージ リソースも解放します。
+            /// </summary>
+            private void DisposeCore()
+            {
+                if (Interlocked.CompareExchange(ref this._disposableState, 1L, 0L) == 0L)
+                {
+                    Interlocked.Exchange(ref this._dispose, null)?.Invoke();
+                }
+            }
         }
     }
 }

@@ -10,7 +10,27 @@ namespace Sandbox.Core.UnitTests;
 public class DisposableTest
 {
     [Fact]
-    public void WhenDispose_DisposableCreated_ShouldCall()
+    public void Disposable_DisposableCreate_Dispose_CallByGc()
+    {
+        bool called = false;
+        WeakReference<IDisposable> DisposeByScope()
+        {
+            // This will go out of scope after dispose() is executed.
+            var disposable = Disposable.Create(() => called = true);
+            return new WeakReference<IDisposable>(disposable, trackResurrection: true);
+        }
+
+        var weak = DisposeByScope();
+
+        GC.WaitForPendingFinalizers();
+        GC.Collect(0, GCCollectionMode.Forced);
+        GC.WaitForPendingFinalizers();
+
+        Assert.True(called);
+    }
+
+    [Fact]
+    public void Disposable_DisposableCreate_Dispose()
     {
         var called = false;
         var disposable = Disposable.Create(() => called = true);
