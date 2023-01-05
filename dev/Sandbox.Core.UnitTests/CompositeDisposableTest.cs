@@ -10,7 +10,44 @@ namespace Sandbox.Core.UnitTests;
 public class CompositeDisposableTest
 {
     [Fact]
-    public void AddDisposable()
+    public void CompositeDisposable_Dispose()
+    {
+        var disposable = new CompositeDisposable();
+        Assert.NotNull(disposable);
+        Assert.False(disposable.IsDisposed);
+
+        disposable.Dispose();
+        Assert.True(disposable.IsDisposed);
+    }
+
+    [Fact]
+    public void CompositeDisposable_Dispose_CallByGc()
+    {
+        static WeakReference<CompositeDisposable> DisposeByScope()
+        {
+            // This will go out of scope after dispose() is executed.
+            var disposable = new CompositeDisposable();
+            return new WeakReference<CompositeDisposable>(disposable, trackResurrection: true);
+        }
+
+        var weak = DisposeByScope();
+
+        GC.WaitForPendingFinalizers();
+        GC.Collect(0, GCCollectionMode.Forced);
+        GC.WaitForPendingFinalizers();
+
+        if (weak.TryGetTarget(out var resurrection))
+        {
+            Assert.True(resurrection.IsDisposed);
+        }
+        else
+        {
+            Assert.True(false, "Failed");
+        }
+    }
+
+    [Fact]
+    public void CompositeDisposable_AddDisposable()
     {
         var called = false;
         var disposableToAdd = Disposable.Create(() => called = true);
@@ -26,7 +63,7 @@ public class CompositeDisposableTest
     }
 
     [Fact]
-    public void AddDisposable_AlreadyDisposed()
+    public void CompositeDisposable_AddDisposable_AlreadyDisposed()
     {
         var called = false;
         var disposableToAdd = Disposable.Create(() => called = true);
@@ -42,7 +79,7 @@ public class CompositeDisposableTest
     }
 
     [Fact]
-    public void Ctor_WithEnumerable_DoseNotThrow()
+    public void CompositeDisposable_Ctor_WithEnumerable_DoseNotThrow()
     {
         var called1 = false;
         var disposableToAdd1 = Disposable.Create(() => called1 = true);
