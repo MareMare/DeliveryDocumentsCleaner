@@ -7,8 +7,9 @@
 
 using System.Drawing;
 using Microsoft.Office.Interop.Excel;
+using Sandbox.Core.Disposables;
 
-namespace Sandbox.Core;
+namespace Sandbox.Core.Interop;
 
 /// <summary>
 /// Excel ドキュメントの情報を更新する機能を提供します。

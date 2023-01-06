@@ -5,9 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
-namespace Sandbox.Core.UnitTests;
+namespace Sandbox.Core.Disposables.UnitTests;
 
 public class CriticalDisposableObjectTest
 {

@@ -39,4 +39,8 @@
     </COMReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sandbox.Core.Disposables\Sandbox.Core.Disposables.csproj" />
+  </ItemGroup>
+
 </Project>

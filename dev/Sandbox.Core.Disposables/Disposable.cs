@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Sandbox.Core
+namespace Sandbox.Core.Disposables
 {
     /// <summary>
     /// Dispose 可能なインスタンスを提供します。

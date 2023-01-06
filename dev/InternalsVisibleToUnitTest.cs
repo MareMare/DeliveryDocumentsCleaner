@@ -7,4 +7,5 @@
 
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("Sandbox.Core.UnitTests")]
+[assembly: InternalsVisibleTo("Sandbox.Core.Disposables.UnitTests")]
+[assembly: InternalsVisibleTo("Sandbox.Core.Interop.UnitTests")]

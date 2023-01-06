@@ -7,7 +7,7 @@
 
 using System.Drawing;
 
-namespace Sandbox.Core.UnitTests;
+namespace Sandbox.Core.Interop.UnitTests;
 
 public class XlDocModifierTest : IDisposable
 {
