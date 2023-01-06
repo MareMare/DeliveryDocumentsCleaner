@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Sandbox.Core;
+namespace Sandbox.Core.Interop;
 
 /// <summary>
 /// ランタイム呼び出し可能ラッパー (RCW: Runtime Callable Wrappers) のインターフェイスを表します。

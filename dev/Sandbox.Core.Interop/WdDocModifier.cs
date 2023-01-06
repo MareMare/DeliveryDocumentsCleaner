@@ -8,7 +8,7 @@
 using Microsoft.Office.Interop.Word;
 using Sandbox.Core.Disposables;
 
-namespace Sandbox.Core;
+namespace Sandbox.Core.Interop;
 
 /// <summary>
 /// Word ドキュメントの情報を更新する機能を提供します。

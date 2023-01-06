@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sandbox.Core\Sandbox.Core.csproj" />
+    <ProjectReference Include="..\Sandbox.Core.Interop\Sandbox.Core.Interop.csproj" />
   </ItemGroup>
 
 </Project>

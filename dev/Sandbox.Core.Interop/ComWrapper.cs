@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using Sandbox.Core.Disposables;
 
-namespace Sandbox.Core;
+namespace Sandbox.Core.Interop;
 
 /// <summary>
 /// ランタイム呼び出し可能ラッパー (RCW: Runtime Callable Wrappers) のファクトリを提供します。

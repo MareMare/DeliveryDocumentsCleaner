@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Sandbox.Core.UnitTests;
+namespace Sandbox.Core.Interop.UnitTests;
 
 public class WdDocModifierTest : IDisposable
 {
