@@ -7,6 +7,7 @@
 
 using System.Drawing;
 using Microsoft.Office.Interop.Excel;
+using Sandbox.Core.Disposables;
 
 namespace Sandbox.Core;
 

@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Core", "Sandbox.Core\Sandbox.Core.csproj", "{7D3852C9-B2F7-4C21-9358-8C2E737C744D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox.Core", "Sandbox.Core\Sandbox.Core.csproj", "{7D3852C9-B2F7-4C21-9358-8C2E737C744D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Core.UnitTests", "Sandbox.Core.UnitTests\Sandbox.Core.UnitTests.csproj", "{1E812F16-C76E-4E52-9879-5E535CD3BA98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Core.Disposables", "Sandbox.Core.Disposables\Sandbox.Core.Disposables.csproj", "{BA73437C-ABD3-4A55-896C-BC12431806A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox.Core.UnitTests", "Sandbox.Core.UnitTests\Sandbox.Core.UnitTests.csproj", "{1E812F16-C76E-4E52-9879-5E535CD3BA98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.Core.Disposables.UnitTests", "Sandbox.Core.Disposables.UnitTests\Sandbox.Core.Disposables.UnitTests.csproj", "{2838AB74-BBF6-4EBF-AAFE-1640A368688D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{1E812F16-C76E-4E52-9879-5E535CD3BA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E812F16-C76E-4E52-9879-5E535CD3BA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E812F16-C76E-4E52-9879-5E535CD3BA98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA73437C-ABD3-4A55-896C-BC12431806A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA73437C-ABD3-4A55-896C-BC12431806A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA73437C-ABD3-4A55-896C-BC12431806A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA73437C-ABD3-4A55-896C-BC12431806A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2838AB74-BBF6-4EBF-AAFE-1640A368688D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2838AB74-BBF6-4EBF-AAFE-1640A368688D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2838AB74-BBF6-4EBF-AAFE-1640A368688D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2838AB74-BBF6-4EBF-AAFE-1640A368688D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

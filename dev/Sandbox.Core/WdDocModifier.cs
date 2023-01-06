@@ -6,6 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Microsoft.Office.Interop.Word;
+using Sandbox.Core.Disposables;
 
 namespace Sandbox.Core;
 
