@@ -28,7 +28,7 @@ public class XlDocModifier : DisposableBase
     private string _filePath = default!;
 
     /// <summary>変更された場合は <c>true</c>。それ以外は <c>false</c>。</summary>
-    private bool _isDirty = false;
+    private bool _isDirty;
 
     /// <summary>
     /// <see cref="XlDocModifier" /> クラスの新しいインスタンスを初期化します。
@@ -52,11 +52,7 @@ public class XlDocModifier : DisposableBase
         get => this._filePath;
         set
         {
-            if (this._xlBook is not null)
-            {
-                throw new InvalidOperationException($"既にオープン済みです。Path=\"{this._filePath}\"");
-            }
-
+            this.ThrowIfAlreadyOpen();
             this._filePath = value;
         }
     }
@@ -66,8 +62,10 @@ public class XlDocModifier : DisposableBase
     /// </summary>
     public void OpenBook()
     {
+        this.ThrowIfAlreadyOpen();
+
         this._isDirty = false;
-        using var workbooks = this._xlApp.Target.Workbooks.ToComWrap().AddTo(this._disposables);
+        using var workbooks = this._xlApp.Target.Workbooks.ToComWrap();
         this._xlBook = workbooks.Target.Open(Filename: this.FilePath).ToComWrap();
     }
 
@@ -167,6 +165,18 @@ public class XlDocModifier : DisposableBase
     {
         this._disposables.Dispose();
         this._xlBook?.Dispose();
+        this._xlBook = null;
         this._xlApp.Dispose();
+    }
+
+    /// <summary>
+    /// 既にオープン済みであれば例外を発生させます。
+    /// </summary>
+    private void ThrowIfAlreadyOpen()
+    {
+        if (this._xlBook is not null)
+        {
+            throw new InvalidOperationException($"既にオープン済みです。Path=\"{this._filePath}\"");
+        }
     }
 }

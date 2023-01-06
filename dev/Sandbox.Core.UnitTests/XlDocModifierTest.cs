@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace Sandbox.Core.UnitTests;
 
-public class XlDocModifierTest
+public class XlDocModifierTest : IDisposable
 {
     private static readonly string TargetExcelFilePath = Path.Combine(Environment.CurrentDirectory, "01.おためしブック.xlsx");
 
@@ -34,5 +34,15 @@ public class XlDocModifierTest
         modifier.OpenBook();
 
         Assert.Throws<InvalidOperationException>(() => modifier.FilePath = XlDocModifierTest.TargetExcelFilePath);
+    }
+
+    /// <inheritdoc />
+    public void Dispose()
+    {
+        GC.WaitForPendingFinalizers();
+        GC.Collect(0, GCCollectionMode.Forced);
+        GC.WaitForPendingFinalizers();
+
+        GC.SuppressFinalize(this);
     }
 }
