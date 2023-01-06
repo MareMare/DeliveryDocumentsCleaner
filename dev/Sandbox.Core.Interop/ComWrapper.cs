@@ -14,7 +14,7 @@ namespace Sandbox.Core.Interop;
 /// <summary>
 /// ランタイム呼び出し可能ラッパー (RCW: Runtime Callable Wrappers) のファクトリを提供します。
 /// </summary>
-internal static class ComWrapper
+public static class ComWrapper
 {
     /// <summary>
     /// <see cref="IComWrapper{TComObject}" /> を実装したインスタンスを生成します。
@@ -23,15 +23,6 @@ internal static class ComWrapper
     /// <param name="target">Runtime Callable Wrappers の対象となる COM オブジェクト。</param>
     /// <returns><see cref="IComWrapper{TComObject}" /> を実装したインスタンス。</returns>
     public static IComWrapper<TComObject> ToComWrap<TComObject>(this TComObject target)
-        where TComObject : class => ComWrapper.Create(target);
-
-    /// <summary>
-    /// <see cref="IComWrapper{TComObject}" /> を実装したインスタンスを生成します。
-    /// </summary>
-    /// <typeparam name="TComObject">Runtime Callable Wrappers の対象となる COM 型。</typeparam>
-    /// <param name="target">Runtime Callable Wrappers の対象となる COM オブジェクト。</param>
-    /// <returns><see cref="IComWrapper{TComObject}" /> を実装したインスタンス。</returns>
-    public static IComWrapper<TComObject> Create<TComObject>(TComObject target)
         where TComObject : class => new Rcw<TComObject>(target);
 
     /// <summary>
