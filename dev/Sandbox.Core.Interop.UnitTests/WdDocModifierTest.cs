@@ -23,6 +23,17 @@ public class WdDocModifierTest : IDisposable
         modifier.CloseDoc();
     }
 
+    [Fact]
+    public void WdDocModifier_FilePath_IfAlreadyOpened_ShouldThrow()
+    {
+        using var modifier = new WdDocModifier();
+
+        modifier.FilePath = WdDocModifierTest.TargetWordFilePath;
+        modifier.OpenDoc();
+
+        Assert.Throws<InvalidOperationException>(() => modifier.FilePath = WdDocModifierTest.TargetWordFilePath);
+    }
+
     /// <inheritdoc />
     public void Dispose()
     {
