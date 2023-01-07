@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Sandbox.Core.Disposables
+namespace DeliveryDocumentsCleaner.Disposables
 {
     /// <summary>
     /// Dispose 可能なインスタンスを提供します。

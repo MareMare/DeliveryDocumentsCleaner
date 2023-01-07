@@ -7,7 +7,7 @@
 
 using System.Collections.Concurrent;
 
-namespace Sandbox.Core.Disposables;
+namespace DeliveryDocumentsCleaner.Disposables;
 
 /// <summary>
 /// Dispose 可能なインスタンスのコンテナを表します。

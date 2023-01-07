@@ -7,7 +7,7 @@
 
 using System.Diagnostics;
 
-namespace Sandbox.Core.Disposables
+namespace DeliveryDocumentsCleaner.Disposables
 {
     /// <summary>
     /// Dispose パターンを実装した基本となるオブジェクトを表します。

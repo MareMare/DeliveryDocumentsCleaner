@@ -7,7 +7,7 @@
 
 using System.Runtime.ConstrainedExecution;
 
-namespace Sandbox.Core.Disposables;
+namespace DeliveryDocumentsCleaner.Disposables;
 
 /// <summary>
 /// <see cref="IDisposable" /> インターフェイスを実装した <see cref="CriticalFinalizerObject" /> クラスを表します。

@@ -38,7 +38,7 @@
 
   <!-- ライセンスファイル -->
   <PropertyGroup Condition=" '!$(IsTestProject)' == 'True' ">
-    <PackageLicenseFile>$(MSBuildThisFileDirectory)..\LICENSE</PackageLicenseFile>
+    <PackageLicenseFile>$(MSBuildThisFileDirectory)..\..\LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
 </Project>

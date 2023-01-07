@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Sandbox.Core.Interop;
+namespace DeliveryDocumentsCleaner.Interop;
 
 /// <summary>
 /// <see cref="Microsoft.Office.Interop.Word.WdColorIndex" /> と等価な蛍光ペン識別子の列挙体を表します。

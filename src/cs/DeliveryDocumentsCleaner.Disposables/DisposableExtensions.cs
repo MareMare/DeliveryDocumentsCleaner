@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Sandbox.Core.Disposables;
+namespace DeliveryDocumentsCleaner.Disposables;
 
 /// <summary>
 /// <see cref="IDisposable" /> インターフェイスの拡張メソッドを提供します。

@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Sandbox.Core.Disposables.UnitTests;
+namespace DeliveryDocumentsCleaner.Disposables.UnitTests;
 
 public class DisposableBaseTest
 {

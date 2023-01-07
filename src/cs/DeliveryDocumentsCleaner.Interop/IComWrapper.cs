@@ -5,7 +5,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Sandbox.Core.Interop;
+namespace DeliveryDocumentsCleaner.Interop;
 
 /// <summary>
 /// ランタイム呼び出し可能ラッパー (RCW: Runtime Callable Wrappers) のインターフェイスを表します。

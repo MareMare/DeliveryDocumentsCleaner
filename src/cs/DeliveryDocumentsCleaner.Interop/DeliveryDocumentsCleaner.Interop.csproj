@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sandbox.Core.Disposables\Sandbox.Core.Disposables.csproj" />
+    <ProjectReference Include="..\DeliveryDocumentsCleaner.Disposables\DeliveryDocumentsCleaner.Disposables.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,10 +5,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using DeliveryDocumentsCleaner.Disposables;
 using Microsoft.Office.Interop.Word;
-using Sandbox.Core.Disposables;
 
-namespace Sandbox.Core.Interop;
+namespace DeliveryDocumentsCleaner.Interop;
 
 /// <summary>
 /// Word ドキュメントの情報を更新する機能を提供します。

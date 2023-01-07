@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\temp\01.おためしブック.xlsx" Link="01.おためしブック.xlsx">
+    <None Include="..\..\..\temp\01.おためしブック.xlsx" Link="01.おためしブック.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\temp\02.おためし文書.docx" Link="02.おためし文書.docx">
+    <None Include="..\..\..\temp\02.おためし文書.docx" Link="02.おためし文書.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sandbox.Core.Interop\Sandbox.Core.Interop.csproj" />
+    <ProjectReference Include="..\DeliveryDocumentsCleaner.Interop\DeliveryDocumentsCleaner.Interop.csproj" />
   </ItemGroup>
 
 </Project>
