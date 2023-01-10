@@ -39,9 +39,6 @@ public class WdDocModifier : DisposableBase
             { WordColorIdentity.Black, WdColorIndex.wdBlack },
         };
 
-    /// <summary>Dispose 可能なインスタンスのコンテナを表します。</summary>
-    private readonly CompositeDisposable _disposables;
-
     /// <summary><see cref="IComWrapper{Application}" /> インスタンスを表します。</summary>
     private readonly IComWrapper<Application> _wdApp;
 
@@ -59,7 +56,6 @@ public class WdDocModifier : DisposableBase
     /// </summary>
     public WdDocModifier()
     {
-        this._disposables = new CompositeDisposable();
         this._wdApp = new Application().ToComWrap();
         this._wdApp.SetBusy();
     }
@@ -206,7 +202,6 @@ public class WdDocModifier : DisposableBase
     /// <inheritdoc />
     protected override void DisposeUnmanagedInstances()
     {
-        this._disposables.Dispose();
         this._wdDoc?.Dispose();
         this._wdDoc = null;
         this._wdApp.Dispose();

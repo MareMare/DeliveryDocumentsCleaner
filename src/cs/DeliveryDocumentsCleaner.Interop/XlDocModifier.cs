@@ -16,9 +16,6 @@ namespace DeliveryDocumentsCleaner.Interop;
 /// </summary>
 public class XlDocModifier : DisposableBase
 {
-    /// <summary>Dispose 可能なインスタンスのコンテナを表します。</summary>
-    private readonly CompositeDisposable _disposables;
-
     /// <summary><see cref="IComWrapper{Application}" /> インスタンスを表します。</summary>
     private readonly IComWrapper<Application> _xlApp;
 
@@ -36,7 +33,6 @@ public class XlDocModifier : DisposableBase
     /// </summary>
     public XlDocModifier()
     {
-        this._disposables = new CompositeDisposable();
         this._xlApp = new Application().ToComWrap();
         this._xlApp.SetBusy();
     }
@@ -164,7 +160,6 @@ public class XlDocModifier : DisposableBase
     /// <inheritdoc />
     protected override void DisposeUnmanagedInstances()
     {
-        this._disposables.Dispose();
         this._xlBook?.Dispose();
         this._xlBook = null;
         this._xlApp.Dispose();
