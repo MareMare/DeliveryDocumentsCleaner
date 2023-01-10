@@ -5,10 +5,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DeliveryDocumentsCleaner.Interop;
+namespace DeliveryDocumentsCleaner;
 
 /// <summary>
-/// <see cref="Microsoft.Office.Interop.Word.WdColorIndex" /> と等価な蛍光ペン識別子の列挙体を表します。
+/// <c>WdColorIndex</c> と等価な蛍光ペン識別子の列挙体を表します。
 /// </summary>
 public enum WordColorIdentity
 {

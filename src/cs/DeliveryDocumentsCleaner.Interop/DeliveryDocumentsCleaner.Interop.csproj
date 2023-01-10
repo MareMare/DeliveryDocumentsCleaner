@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DeliveryDocumentsCleaner.Disposables\DeliveryDocumentsCleaner.Disposables.csproj" />
+    <ProjectReference Include="..\DeliveryDocumentsCleaner\DeliveryDocumentsCleaner.csproj" />
   </ItemGroup>
 
 </Project>
