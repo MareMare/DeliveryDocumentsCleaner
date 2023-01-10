@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryDocumentsCleaner", "DeliveryDocumentsCleaner\DeliveryDocumentsCleaner.csproj", "{BE0B6F25-B7B7-4C97-AFFE-EA36AA4E311D}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryDocumentsCleaner.Disposables", "DeliveryDocumentsCleaner.Disposables\DeliveryDocumentsCleaner.Disposables.csproj", "{BA73437C-ABD3-4A55-896C-BC12431806A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryDocumentsCleaner.Disposables.UnitTests", "DeliveryDocumentsCleaner.Disposables.UnitTests\DeliveryDocumentsCleaner.Disposables.UnitTests.csproj", "{2838AB74-BBF6-4EBF-AAFE-1640A368688D}"
@@ -26,6 +28,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE0B6F25-B7B7-4C97-AFFE-EA36AA4E311D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0B6F25-B7B7-4C97-AFFE-EA36AA4E311D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0B6F25-B7B7-4C97-AFFE-EA36AA4E311D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0B6F25-B7B7-4C97-AFFE-EA36AA4E311D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BA73437C-ABD3-4A55-896C-BC12431806A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA73437C-ABD3-4A55-896C-BC12431806A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA73437C-ABD3-4A55-896C-BC12431806A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
