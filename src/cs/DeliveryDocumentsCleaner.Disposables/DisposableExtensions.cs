@@ -22,6 +22,7 @@ public static class DisposableExtensions
     public static T AddTo<T>(this T self, CompositeDisposable container)
         where T : IDisposable
     {
+        ArgumentNullException.ThrowIfNull(container);
         container.Add(self);
         return self;
     }

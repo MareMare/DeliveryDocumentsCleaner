@@ -26,8 +26,8 @@ public class CompositeDisposable : IDisposable
     /// <param name="disposables">新しいリストに要素がコピーされるコレクション。</param>
     public CompositeDisposable(params IDisposable[] disposables)
     {
-        this._disposables = new ConcurrentBag<IDisposable>(disposables) ??
-                            throw new ArgumentNullException(nameof(disposables));
+        ArgumentNullException.ThrowIfNull(disposables);
+        this._disposables = new ConcurrentBag<IDisposable>(disposables);
     }
 
     /// <summary>
@@ -53,6 +53,8 @@ public class CompositeDisposable : IDisposable
     /// <param name="disposable">追加するインスタンス。</param>
     public void Add(IDisposable disposable)
     {
+        ArgumentNullException.ThrowIfNull(disposable);
+
         if (this.IsDisposed)
         {
             disposable.Dispose();
@@ -74,7 +76,7 @@ public class CompositeDisposable : IDisposable
     /// <see cref="CompositeDisposable" /> クラスのインスタンスによって使用されているアンマネージ リソースを解放し、オプションでマネージ リソースも解放します。
     /// </summary>
     /// <param name="disposing">マネージ リソースとアンマネージ リソースの両方を解放する場合は true。アンマネージ リソースだけを解放する場合は false。</param>
-    private void Dispose(bool disposing)
+    protected virtual void Dispose(bool disposing)
     {
         if (Interlocked.CompareExchange(ref this._disposableState, 1L, 0L) == 0L)
         {

@@ -31,19 +31,20 @@ public class CriticalDisposableObjectTest
     [Fact]
     public void CriticalDisposableObject_Dispose_CallByGc()
     {
-        static WeakReference<WrappedCriticalDisposableObject> DisposeByScope()
+        WeakReference<WrappedCriticalDisposableObject>? weak;
+        void DisposeByScope()
         {
             // This will go out of scope after dispose() is executed.
             var disposable = new WrappedCriticalDisposableObject();
-            return new WeakReference<WrappedCriticalDisposableObject>(disposable, trackResurrection: true);
+            weak = new WeakReference<WrappedCriticalDisposableObject>(disposable, trackResurrection: true);
         }
 
-        var weak = DisposeByScope();
-
+        DisposeByScope();
         GC.WaitForPendingFinalizers();
         GC.Collect(0, GCCollectionMode.Forced);
         GC.WaitForPendingFinalizers();
 
+        Assert.NotNull(weak);
         if (weak.TryGetTarget(out var resurrection))
         {
             Assert.True(resurrection.IsDisposed);
@@ -51,13 +52,13 @@ public class CriticalDisposableObjectTest
         }
         else
         {
-            Assert.True(false, "Failed");
+            Assert.Fail("Failed");
         }
     }
 
     private class WrappedCriticalDisposableObject : CriticalDisposableObject
     {
-        public int NumberOfReleaseCoreMethodCalls { get; private set; } = 0;
+        public int NumberOfReleaseCoreMethodCalls { get; private set; }
 
         /// <inheritdoc />
         protected override void ReleaseCore() => this.NumberOfReleaseCoreMethodCalls++;

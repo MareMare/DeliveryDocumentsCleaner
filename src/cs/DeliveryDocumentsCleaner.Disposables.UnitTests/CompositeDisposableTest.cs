@@ -23,26 +23,27 @@ public class CompositeDisposableTest
     [Fact]
     public void CompositeDisposable_Dispose_CallByGc()
     {
-        static WeakReference<CompositeDisposable> DisposeByScope()
+        WeakReference<CompositeDisposable>? weak;
+        void DisposeByScope()
         {
             // This will go out of scope after dispose() is executed.
             var disposable = new CompositeDisposable();
-            return new WeakReference<CompositeDisposable>(disposable, trackResurrection: true);
+            weak = new WeakReference<CompositeDisposable>(disposable, trackResurrection: true);
         }
 
-        var weak = DisposeByScope();
-
+        DisposeByScope();
         GC.WaitForPendingFinalizers();
         GC.Collect(0, GCCollectionMode.Forced);
         GC.WaitForPendingFinalizers();
 
+        Assert.NotNull(weak);
         if (weak.TryGetTarget(out var resurrection))
         {
             Assert.True(resurrection.IsDisposed);
         }
         else
         {
-            Assert.True(false, "Failed");
+            Assert.Fail("Failed");
         }
     }
 

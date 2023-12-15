@@ -12,21 +12,27 @@ public class DisposableTest
     [Fact]
     public void Disposable_DisposableCreate_Dispose_CallByGc()
     {
-        bool called = false;
-        WeakReference<IDisposable> DisposeByScope()
+        var called = false;
+        WeakReference<IDisposable>? weak;
+        void DisposeByScope()
         {
             // This will go out of scope after dispose() is executed.
             var disposable = Disposable.Create(() => called = true);
-            return new WeakReference<IDisposable>(disposable, trackResurrection: true);
+            weak = new WeakReference<IDisposable>(disposable, trackResurrection: true);
         }
 
-        var weak = DisposeByScope();
-
+        DisposeByScope();
         GC.WaitForPendingFinalizers();
         GC.Collect(0, GCCollectionMode.Forced);
         GC.WaitForPendingFinalizers();
 
         Assert.True(called);
+        
+        Assert.NotNull(weak);
+        if (!weak.TryGetTarget(out var resurrection))
+        {
+            Assert.Fail("Failed");
+        }
     }
 
     [Fact]

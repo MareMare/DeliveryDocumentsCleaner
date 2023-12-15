@@ -27,10 +27,7 @@ namespace DeliveryDocumentsCleaner.Disposables
         /// <summary>
         /// <see cref="DisposableBase" /> クラスのインスタンスが GC に回収される時に呼び出されます。
         /// </summary>
-        ~DisposableBase()
-        {
-            this.Dispose(false);
-        }
+        ~DisposableBase() => this.Dispose(false);
 
         /// <summary>
         /// <see cref="IDisposable.Dispose" /> されたかを取得します。
@@ -92,7 +89,7 @@ namespace DeliveryDocumentsCleaner.Disposables
         /// <see cref="DisposableBase" /> クラスのインスタンスによって使用されているアンマネージ リソースを解放し、オプションでマネージ リソースも解放します。
         /// </summary>
         /// <param name="disposing">マネージ リソースとアンマネージ リソースの両方を解放する場合は true。アンマネージ リソースだけを解放する場合は false。</param>
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (Interlocked.CompareExchange(ref this._disposableState, 1L, 0L) == 0L)
             {

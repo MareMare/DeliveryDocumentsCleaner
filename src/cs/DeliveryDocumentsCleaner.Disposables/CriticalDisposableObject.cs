@@ -20,10 +20,7 @@ public abstract class CriticalDisposableObject : CriticalFinalizerObject, IDispo
     /// <summary>
     /// <see cref="CriticalDisposableObject" /> クラスのインスタンスが GC に回収される時に呼び出されます。
     /// </summary>
-    ~CriticalDisposableObject()
-    {
-        this.Release();
-    }
+    ~CriticalDisposableObject() => this.Dispose(false);
 
     /// <summary>
     /// Dispose されたかを取得します。
@@ -37,14 +34,15 @@ public abstract class CriticalDisposableObject : CriticalFinalizerObject, IDispo
     /// <inheritdoc />
     public void Dispose()
     {
-        this.Release();
+        this.Dispose(true);
         GC.SuppressFinalize(this);
     }
 
     /// <summary>
-    /// リソースの解放およびリセットに関連付けられているアプリケーション定義のタスクを実行します。
+    /// <see cref="CriticalDisposableObject" /> クラスのインスタンスによって使用されているアンマネージ リソースを解放し、オプションでマネージ リソースも解放します。
     /// </summary>
-    protected void Release()
+    /// <param name="disposing">マネージ リソースとアンマネージ リソースの両方を解放する場合は true。アンマネージ リソースだけを解放する場合は false。</param>
+    protected virtual void Dispose(bool disposing)
     {
         if (Interlocked.CompareExchange(ref this._disposableState, 1, 0) == 0)
         {

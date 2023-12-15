@@ -33,19 +33,20 @@ public class DisposableBaseTest
     [Fact]
     public void Dispose_CallsByGc()
     {
-        static WeakReference<WrappedDisposable> DisposeByScope()
+        WeakReference<WrappedDisposable>? weak;
+        void DisposeByScope()
         {
             // This will go out of scope after dispose() is executed.
             var disposable = new WrappedDisposable();
-            return new WeakReference<WrappedDisposable>(disposable, true);
+            weak = new WeakReference<WrappedDisposable>(disposable, true);
         }
 
-        var weak = DisposeByScope();
-
+        DisposeByScope();
         GC.WaitForPendingFinalizers();
         GC.Collect(0, GCCollectionMode.Forced);
         GC.WaitForPendingFinalizers();
 
+        Assert.NotNull(weak);
         if (weak.TryGetTarget(out var resurrection))
         {
             Assert.True(resurrection.IsDisposed);
