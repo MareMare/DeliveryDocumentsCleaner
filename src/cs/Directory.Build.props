@@ -26,9 +26,13 @@
     <AnalysisLevel>latest-all</AnalysisLevel>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(IsTestProject)' == 'True' ">
+    <NoWarn>1701;1702;CA1707</NoWarn>
+  </PropertyGroup>
+
   <!--StyleCop.Analyzer -->
   <ItemGroup Condition=" '!$(IsTestProject)' == 'True' ">
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
