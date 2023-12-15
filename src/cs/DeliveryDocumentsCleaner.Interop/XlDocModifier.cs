@@ -96,7 +96,13 @@ public class XlDocModifier : DisposableBase
     /// 指定された色のハイライトをクリアします。
     /// </summary>
     /// <param name="colorToClear">クリアするハイライトの色。</param>
-    public void ClearHighlightColor(Color colorToClear) => this.ClearHighlightColor(ColorTranslator.ToOle(colorToClear));
+    public void ClearHighlightColor(Color? colorToClear)
+    {
+        if (colorToClear.HasValue)
+        {
+            this.ClearHighlightColor(ColorTranslator.ToOle(colorToClear.Value));
+        }
+    }
 
     /// <summary>
     /// 指定された色コードのハイライトをクリアします。
