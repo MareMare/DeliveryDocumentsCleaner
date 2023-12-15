@@ -16,6 +16,7 @@ public interface IDocumentModifier : IDisposable
     /// 非同期操作として、クリアを実行します。
     /// </summary>
     /// <param name="setting">ドキュメントの情報を更新する設定。</param>
+    /// <param name="documentItems">ドキュメント項目のコレクション。</param>
     /// <returns>完了を表す <see cref="ValueTask" />。</returns>
-    ValueTask ExecuteToClearAsync(DocModifierSetting setting);
+    ValueTask ExecuteToClearAsync(DocModifierSetting setting, IReadOnlyCollection<IDocumentItem>? documentItems);
 }

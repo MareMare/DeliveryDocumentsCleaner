@@ -15,7 +15,7 @@ public class ProgressInfo
     /// <summary>
     /// <see cref="ProgressInfo" /> クラスの新しいインスタンスを生成します。
     /// </summary>
-    private ProgressInfo()
+    protected ProgressInfo()
     {
     }
 

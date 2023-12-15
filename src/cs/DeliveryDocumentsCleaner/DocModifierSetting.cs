@@ -21,7 +21,7 @@ public class DocModifierSetting
     /// 値を表す <see cref="Color" /> 型。
     /// <para>蛍光ペン識別子のコレクション。既定値は <see langword="null" /> です。</para>
     /// </value>
-    public Color? ExcelHighlightColor { get; init; } = null;
+    public Color? ExcelHighlightColor { get; init; }
 
     /// <summary>
     /// 蛍光ペン識別子のコレクションを取得します。
@@ -30,14 +30,5 @@ public class DocModifierSetting
     /// 値を表す <see cref="WordColorIdentity" /> 型。
     /// <para>蛍光ペン識別子のコレクション。既定値は <see langword="null" /> です。</para>
     /// </value>
-    public IReadOnlyCollection<WordColorIdentity>? WordColorIds { get; init; } = null;
-
-    /// <summary>
-    /// ドキュメント項目のコレクションを取得します。
-    /// </summary>
-    /// <value>
-    /// 値を表す <see cref="IDocumentItem" /> 型。
-    /// <para>ドキュメント項目のコレクション。既定値は <see langword="null" /> です。</para>
-    /// </value>
-    public IReadOnlyCollection<IDocumentItem>? DocumentItems { get; init; } = null;
+    public IReadOnlyCollection<WordColorIdentity>? WordColorIds { get; init; }
 }
